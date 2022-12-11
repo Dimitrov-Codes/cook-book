@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Recipe Home</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+
 </head>
 <body>
-    <h1>My Reci pes!</h1>s
+<h1 class="text-center">My Recipes!</h1>
+<div class="container">
+
+<table class="table table-striped table-hover">
+    <thead class="table-header bg-primary text-light">
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>View</th>
+        </tr>
+    </thead>
+    <tbody class="">
+        <tr th:each="recipe: ${recipes}">
+            <td th:text="${recipe.id}"></td>
+            <td th:text="${recipe.description}"></td>
+            <td><a href="#" th:href="@{'/show/'+ ${recipe.id}}">View</a></td>
+        </tr>
+    </tbody>
+</table>
+</div>
 </body>
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>

@@ -1,4 +1,7 @@
 package com.example.cookbook.domain;
 
-public class Difficulty {
+import jakarta.persistence.Entity;
+
+public enum Difficulty {
+    EASY, MODERATE, HARD
 }
