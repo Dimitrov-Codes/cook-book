@@ -7,7 +7,10 @@ import com.example.cookbook.repositories.UnitOfMeasureRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class CookbookApplication {
@@ -16,7 +19,8 @@ public class CookbookApplication {
 
         ConfigurableApplicationContext ctx = SpringApplication.run(CookbookApplication.class, args);
         System.out.println("http://localhost:8080");
-        System.out.println("http://localhost:8080/h2-console");
+        for(String i: ctx.getEnvironment().getActiveProfiles())
+            if(i.equals("default")) System.out.println("http://localhost:8080/h2-console");
     }
     @RequestMapping("/error")
     public String getError(){ return "error"; }

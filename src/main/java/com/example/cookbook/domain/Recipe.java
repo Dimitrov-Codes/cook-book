@@ -39,23 +39,23 @@ public class Recipe {
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
     @OneToMany(cascade = CascadeType.ALL)
-    @ToString.Exclude
     @JsonManagedReference
     private Set<Ingredient> ingredients = new HashSet<>();
     @ManyToMany
     @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    @ToString.Exclude
     @JsonManagedReference
     private Set<Category> categories = new HashSet<>();
+
     public void setNotes(Note notes) {
-        notes.setRecipe(this);
         this.notes = notes;
+        notes.setRecipe(this);
     }
 
     public void addIngredient(Ingredient ingredient) {
         ingredient.setRecipe(this);
         ingredients.add((ingredient));
     }
+
 
     @Override
     public boolean equals(Object o) {

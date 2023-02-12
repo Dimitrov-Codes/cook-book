@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredients</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+</head>
+<body>
+<!--/*@thymesVar id="ingredients" type="java.util.HashSet"*/-->
+<!--/*@thymesVar id="ingredient" type="com.example.cookbook.domain.Ingredient"*/-->
+<!--/*@thymesVar id="recipeId" type="java.lang.String"*/-->
+<h1 class="text-center m-5">Ingredients</h1>
+<div class="container">
+    <table class="table table-striped table-hover">
+        <thead class="table-header bg-primary text-light">
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Change</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody class="">
+        <tr th:each="ingredient: ${ingredients}">
+            <td th:text="${ingredient.id}">
+                Ingredient
+            </td>
+            <td th:text="${ingredient.description}">
+                Ingredient
+            </td>
+
+            <td><a th:href="@{'/updateIngredient/' + ${ingredient.id}}">Change</a></td>
+            <td><a th:href="@{'/deleteIngredient/' + ${ingredient.id} + '&&' + ${ingredient.recipe.id}}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a class="btn btn-primary btn-large ml-auto p-2" th:href="@{'/createIngredient/' + ${recipeId}}"> Add
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

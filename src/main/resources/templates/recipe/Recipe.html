@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${recipe.description}">Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles/recipe.css}"/>
+</head>
+<body>
+<!--/*@thymesVar id="recipe" type="com.example.cookbook.domain.Recipe"*/-->
+<!--/*@thymesVar id="ingredient" type="com.example.cookbook.domain.Ingredient"*/-->
+<div class="container">
+    <div class="card m-3">
+        <div class="card-header bg-primary text-light p-2 font-weight-bold" th:text="${recipe.description}">
+            Description
+        </div>
+        <div class="card-body">
+
+            <table class="table">
+                <tr>
+                    <th>Categories</th>
+                    <td colspan="2">
+                        <p class="d-inline-block mx-3" th:each="category : ${recipe.categories}"
+                           th:text="${category.categoryName} "></p>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Prep Time:</th>
+                    <td th:text="${recipe.prepTime} + 'mins' "></td>
+                    <th>Difficulty:</th>
+                    <td th:text="${recipe.difficulty} "></td>
+                </tr>
+                <tr>
+                    <th>Cook time:</th>
+                    <td th:text="${recipe.cookTime} + 'mins' "></td>
+                    <th>Source:</th>
+                    <td th:text="${recipe.source}"></td>
+                </tr>
+                <tr>
+                    <th>Servings:</th>
+                    <td colspan="2" th:text="${recipe.servings} "></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="card m-3">
+        <div class="card-header bg-primary text-light p-2 font-weight-bold">
+            <div class="row">
+                <div class="col">
+                    Ingredients
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <a class="btn btn-light" th:href="@{'/viewIngredients/'+ ${recipe.id}}">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-2">
+            <ul>
+                <li th:each="ingredient : ${recipe.ingredients}"
+                    th:text="${(ingredient.getAmount() +
+                                        ' ' + ingredient.uom.uom +
+                                        ' - ' + ingredient.description)}">1 Teaspoon of Sugar
+                </li>
+            </ul>
+        </div>
+        <div class="card m-3">
+            <div class="card-header bg-primary text-light p-2 font-weight-bold"> Directions</div>
+            <div class="card-body">
+            <p class="long-text" th:text="${recipe.directions}">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </p>
+            </div>
+        </div>
+        <div class="card m-3">
+            <div class="card-header bg-primary text-light p-2 font-weight-bold"> Notes</div>
+            <div class="card-body">
+                <p class="long-text" th:text="${recipe.notes}">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script crossorigin="anonymous"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

@@ -26,6 +26,7 @@ public class Ingredient {
     private BigDecimal amount;
     @ManyToOne
     @JsonBackReference
+    @ToString.Exclude
     private Recipe recipe;
     @OneToOne
     private UnitOfMeasure uom;
@@ -41,7 +42,7 @@ public class Ingredient {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Ingredient that = (Ingredient) o;
-        return id != null && Objects.equals(id, that.id);
+        return id != null && id.equals(that.id);
     }
 
     @Override

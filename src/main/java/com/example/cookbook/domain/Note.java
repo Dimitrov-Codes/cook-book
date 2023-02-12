@@ -9,9 +9,9 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
 @Entity
+@Table(name = "note")
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,11 @@ public class Note {
     private Recipe recipe;
     @Lob
     private String recipeNotes;
+
+    @Override
+    public String toString() {
+        return this.recipeNotes;
+    }
 
     @Override
     public boolean equals(Object o) {
